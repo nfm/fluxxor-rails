@@ -4,3 +4,9 @@
 //= require jquery
 //= require rails-behaviors
 //= require turbolinks
+//= require fluxxor
+
+//= require constants
+//= require stores/todo_store
+//= require flux
+//= require app
