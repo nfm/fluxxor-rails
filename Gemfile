@@ -14,6 +14,8 @@ gem 'pry-doc'
 gem 'puma'
 gem 'turbolinks'
 
+gem 'react-rails'
+gem 'sprockets-coffee-react'
 
 # Assets
 gem 'coffee-rails', '~> 4.1.0'
