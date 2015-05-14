@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: fluxxor_development
+
+test:
+  <<: *default
+  database: fluxxor_test
