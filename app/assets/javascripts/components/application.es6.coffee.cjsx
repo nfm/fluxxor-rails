@@ -13,8 +13,8 @@ ApplicationComponent = React.createClass
     <div>
       <ul>
         {
-          @state.todos.map (todo, i) ->
-            <li key={i}><TodoItem todo={todo} /></li>
+          for uuid, todo of @state.todos
+            <li key={uuid}><TodoItem todo={todo} /></li>
         }
       </ul>
       <form onSubmit={@onSubmitForm}>

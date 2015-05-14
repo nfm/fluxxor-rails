@@ -6,7 +6,9 @@
 //= require turbolinks
 //= require react
 //= require fluxxor
+//= require immutable
 
+//= require uuid
 //= require constants
 //= require stores/todo_store
 //= require components/application

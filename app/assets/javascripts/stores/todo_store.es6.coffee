@@ -1,8 +1,14 @@
 `import Constants from 'constants.es6'`
+`import UUID from 'uuid.es6'`
+
+Todo = Immutable.Record
+  uuid: undefined
+  text: ''
+  complete: false
 
 TodoStore = Fluxxor.createStore
   initialize: ->
-    @todos = []
+    @todos = new Immutable.Map()
     @bindActions(
       Constants.ADD_TODO, @onAddTodo,
       Constants.TOGGLE_TODO, @onToggleTodo,
@@ -10,11 +16,12 @@ TodoStore = Fluxxor.createStore
     )
 
   onAddTodo: (payload) ->
-    @todos.push(text: payload.text, complete: false)
+    uuid = UUID.generate()
+    @todos = @todos.set(uuid, new Todo(uuid: uuid, text: payload.text))
     @emit('change')
 
   onToggleTodo: (payload) ->
-    payload.todo.complete = !payload.todo.complete
+    @todos = @todos.update(payload.todo.uuid, (todo) -> todo.set('complete', !todo.complete))
     @emit("change")
 
   onClearTodos: ->
@@ -22,6 +29,6 @@ TodoStore = Fluxxor.createStore
     @emit("change")
 
   getState: ->
-    todos: @todos
+    todos: @todos.toJSON()
 
 `export default TodoStore`
